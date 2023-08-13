@@ -1,0 +1,11 @@
+if item == "use item 1":
+            print(f"You used a {items[0]} and threw it.\nIt did nothing...")
+            battle(e_hp, m_name)
+        elif item == "use item 2":
+            print(f"You used the {items[1]}.\nFor some reason you start to feel like a chav...")
+            battle(e_hp, m_name)
+        elif item == "used item 3":
+            print(f"You used the {items[2]}. Some unreadable text seems scribbled on it...")
+            battle(e_hp, m_name)
+
+
