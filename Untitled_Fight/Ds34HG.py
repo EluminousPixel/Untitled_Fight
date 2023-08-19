@@ -24,12 +24,13 @@ def battle(e_hp, m_name, p):
                     battle(e_hp, m_name, p)
     
     if option == "item":
-        items = ["Stone", "Dagger", "Slip of parchment"]
+        items = ["Stone", "Dagger", "Parchment"]
         print(items)
-        item = input("> Use ").lower()
-        if item in items[0:3]:
-            print(f"You used a {item} and threw it.\nIt did nothing...")
-            battle(e_hp, m_name)
+        item_c = input(">  ")
+        if item_c in actions[0:1] and item_c in items[0:3]:
+            item = item_c.replace("Use ", "")
+            print(f"You used the {item} and threw it.\nIt did nothing...")
+            battle(e_hp, m_name, p)
     
     if option == "run":
         esc_num = (79, 60, 98, 76, 7, 5)
@@ -48,6 +49,7 @@ def battle(e_hp, m_name, p):
         
 
 p = 0
+actions = ["Use "]
 monster_num = {47: "Shoca", 78: "Hantas", 29: "Tolas"}
 e_hp, m_name = random.choice(list(monster_num.items()))
 print(f"A wild {m_name} appears")
