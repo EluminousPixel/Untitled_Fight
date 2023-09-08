@@ -24,12 +24,16 @@ def battle(e_hp, m_name, p):
                     battle(e_hp, m_name, p)
     
     if option == "item":
-        items = ["Stone", "Dagger", "Parchment"]
-        print(items)
+        print(ply_thing["items"])
         item_c = input(">  ")
-        if item_c in actions[0:1] and item_c in items[0:3]:
-            item = item_c.replace("Use ", "")
-            print(f"You used the {item} and threw it.\nIt did nothing...")
+        item_d = item_c.split()
+        num1_wrd = item_d[0]
+        num2_wrd = item_d[1]
+        if num1_wrd == "Use" and num2_wrd in ply_thing["items"]:
+            file = open(r"L:\Python Work\Random_Projects\Untitled_Fight\Ds34HG_text.txt")
+            for pos, l_num in enumerate(file):
+                if pos in spec_lines:
+                    print(l_num.strip())
             battle(e_hp, m_name, p)
     
     if option == "run":
@@ -45,15 +49,20 @@ def battle(e_hp, m_name, p):
                 battle(e_hp, m_name, p)
             else:
                 print(f"You died by the {m_name} while trying to flee")
+                print("Game Over")
                 quit()
         
 
+ply_thing = {0: "G", "items": ["Stone", "Dagger", "Parchment"]}
 p = 0
-actions = ["Use "]
+spec_lines = [0, 1]
+ply_thing["items"][0] = spec_lines[0]
 monster_num = {47: "Shoca", 78: "Hantas", 29: "Tolas"}
 e_hp, m_name = random.choice(list(monster_num.items()))
 print(f"A wild {m_name} appears")
 battle(e_hp, m_name, p)
+
+
 
 
 
