@@ -30,10 +30,12 @@ def battle(e_hp, m_name, p):
         num1_wrd = item_d[0]
         num2_wrd = item_d[1]
         if num1_wrd == "Use" and num2_wrd in ply_thing["items"]:
-            file = open(r"L:\Python Work\Random_Projects\Untitled_Fight\Ds34HG_text.txt")
-            for pos, l_num in enumerate(file):
-                if pos in spec_lines:
-                    print(l_num.strip())
+            for i in ply_thing["items"]:
+                if num1_wrd =="Use" and num2_wrd in desc_pos[key]:
+                    file = open(r"L:\Python Work\Random_Projects\Untitled_Fight\Ds34HG_text.txt")
+                    for pos, l_num in enumerate(file):
+                        if pos in desc_pos[value]:
+                            print(l_num.strip())
             battle(e_hp, m_name, p)
     
     if option == "run":
@@ -55,8 +57,8 @@ def battle(e_hp, m_name, p):
 
 ply_thing = {0: "G", "items": ["Stone", "Dagger", "Parchment"]}
 p = 0
-spec_lines = [0, 1]
-ply_thing["items"][0] = spec_lines[0]
+desc_pos = {"Stone": [0,1], "Dagger": [2,3,4]}
+key, value = desc_pos
 monster_num = {47: "Shoca", 78: "Hantas", 29: "Tolas"}
 e_hp, m_name = random.choice(list(monster_num.items()))
 print(f"A wild {m_name} appears")
