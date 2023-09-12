@@ -1,5 +1,10 @@
 import random
 
+items = ["Stone", "Dagger", "Parchment"]
+desc_pos = {"Stone":[0,1], "Dagger": [2,3,4], "Parchment": [5,6,7]}
+p = 0
+monster_num = {47: "Shoca", 78: "Hantas", 29: "Tolas"}
+e_hp, m_name = random.choice(list(monster_num.items()))
 
 def battle(e_hp, m_name, p):
     option = input("Attack || Item || Run\n> ").lower()
@@ -26,18 +31,18 @@ def battle(e_hp, m_name, p):
     
     if option == "item":
         print(items)
-        item_c = input(">  ")
+        item_c = input("> ")
         item_d = item_c.split()
         num1_wrd = item_d[0]
         num2_wrd = item_d[1]
-        if num1_wrd == "Use" and num2_wrd in items:
-            for key, value in desc_pos.items():
-                if num2_wrd in key:
-                    file = open(r"E:\Python Work\Random_Projects\Untitled_Fight\Ds34HG_text.txt")
-                    for pos, l_num in enumerate(file):
-                        if pos in value:
-                            print(l_num.strip())
-            battle(e_hp, m_name, p)
+        if num1_wrd == "Use" or num1_wrd == "use" and num2_wrd in items:
+                for key, value in desc_pos.items():
+                    if num2_wrd in key:
+                        file = open(r"Untitled_Fight\Ds34HG_text.txt")
+                        for pos, l_num in enumerate(file):
+                            if pos in value:
+                                print(l_num.strip())
+                battle(e_hp, m_name, p)
     
     if option == "run":
         esc_num = (79, 60, 98, 76, 7, 5)
@@ -53,17 +58,21 @@ def battle(e_hp, m_name, p):
             else:
                 print(f"You died by the {m_name} while trying to flee")
                 print("Game Over")
-                quit()
-        
+                break
+    else:
+        battle(e_hp, m_name, p)
 
-items = ["Stone", "Dagger", "Parchment"]
-desc_pos = {"Stone":[0,1], "Dagger": [2,3,4], "Parchement": [5,6]}
-p = 0
-monster_num = {47: "Shoca", 78: "Hantas", 29: "Tolas"}
-e_hp, m_name = random.choice(list(monster_num.items()))
-print(f"A wild {m_name} appears")
-battle(e_hp, m_name, p)
-
+print("-"*39)
+print("     Welcome to the Untitled Fight\n")
+print("     Please type one to continue\n            Play || Quit\n")
+print("-"*39)
+while True:
+    menu = input("> ").lower()
+    if menu == "play":
+        print(f"A wild {m_name} appears")
+        battle(e_hp, m_name, p)
+    if menu == "quit":
+        quit()
 
 
 

@@ -1,5 +1,8 @@
-You used the Stone.
-It hit the ground and you became mildly satisfied.
-You used the Dagger.
-Not knowing it's true strength, you cut yourself.
+You used the Stone
+It hit the ground and you became mildly satisfied
+You used the Dagger
+Not knowing it's true strength, you cut yourself
 Sharp isn't it?
+You read the Parchment
+It appears to read "Plures de hoc ludo veniet"
+What on earth could that mean? You thought
