@@ -2,6 +2,7 @@ import random
 
 items = ["Stone", "Dagger", "Parchment"]
 desc_pos = {"Stone":[0,1], "Dagger": [2,3,4], "Parchment": [5,6,7]}
+crit_num = (11, 25, 39, 76, 84, 56)
 p = 0
 monster_num = {47: "Shoca", 78: "Hantas", 29: "Tolas"}
 e_hp, m_name = random.choice(list(monster_num.items()))
@@ -9,15 +10,15 @@ e_hp, m_name = random.choice(list(monster_num.items()))
 def battle(e_hp, m_name, p):
     option = input("Attack || Item || Run\n> ").lower()
     if option == "attack":
-        crit_num = (11, 25, 39, 76, 84, 56)
         for i in range(1):
             x = random.randint(1, 100)
             if x in crit_num:
                 e_hp -= x
                 print(f"Crit Hit Of {x} On The {m_name}")
+                print(e_hp)
                 if e_hp <= 0:
                     print(f"{m_name} Defeated")
-                    break
+                    re_try()
                 else:
                     battle(e_hp, m_name, p)
             else:
@@ -25,9 +26,11 @@ def battle(e_hp, m_name, p):
                 print(f"Landed A Hit Of {x} On The {m_name}")
                 if e_hp <= 0:
                     print(f"{m_name} Defeated")
-                    break
+                    re_try()
                 else:
                     battle(e_hp, m_name, p)
+    
+            break
     
     if option == "item":
         print(items)
@@ -58,21 +61,33 @@ def battle(e_hp, m_name, p):
             else:
                 print(f"You died by the {m_name} while trying to flee")
                 print("Game Over")
-                break
+                re_try()
     else:
         battle(e_hp, m_name, p)
 
-print("-"*39)
-print("     Welcome to the Untitled Fight\n")
-print("     Please type one to continue\n            Play || Quit\n")
-print("-"*39)
-while True:
-    menu = input("> ").lower()
-    if menu == "play":
-        print(f"A wild {m_name} appears")
-        battle(e_hp, m_name, p)
-    if menu == "quit":
+def start_menu():
+    print("-"*39)
+    print("     Welcome to the Untitled Fight\n")
+    print("     Please type one to continue\n            Play || Quit\n")
+    print("-"*39)
+    while True:
+        menu = input("> ").lower()
+        if menu == "play":
+            print(f"A wild {m_name} appears")
+            battle(e_hp, m_name, p)
+        if menu == "quit":
+            quit()
+
+def re_try():
+    rt = input("Re-play? - y/n: ").lower()
+    if rt == "y":
+        start_menu()
+    if rt == "n":
         quit()
+    else:
+        re_try()
+
+start_menu()
 
 
 
